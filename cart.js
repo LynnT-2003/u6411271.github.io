@@ -4,59 +4,26 @@
 // let has a block scope
 var products = [
     {
-        name: "Gaming PC",
+        name: "Monitor Light Bar",
         Quantity: 1,
-        PPU: 60000,
-        Total: 60000,
-        Discount: 0
+        PPU: 899,
+        Discount: 100
     },
     {
-        name: "AOC 27inch Monitor",
+        name: "SteelSeries Arctis 5",
         Quantity: 2,
-        PPU: 9000,
-        Total: 18000,
-        Discount: 0
-    },
-    {
-        name: "Steelseries Arctis",
-        Quantity: 1,
-        PPU: 3000,
-        Total: 3000,
-        Discount: 0
+        PPU: 3199,
+        Discount: 199
     },
     {
         name: "Keychron Q1 V2",
         Quantity: 1,
         PPU: 10000,
-        Total: 10000,
         Discount: 0
     }
 
 ]
 
-function addToCart() {
-    let elProdct = document.getElementById("products")
-    let pVal = elProdct.value
-    console.log(pVal)
-    let productObj = {
-        name: $('#products').val(),
-        Quantity: $('#qty').val(),
-        PPU: $('#ppu').val(),
-        Discount: $('#discount').val()
-    }
-    
-
-    // Clear existing items in the table
-    // let productList = document.getElementById("productList")
-    // for (let x = 0; x < products.length; x++) {
-    //     productList.deleteRow(1)
-    // }
-
-    $('#productBody').html("")
-
-    products.push(productObj)
-    loadData()
-}
 
 function loadData() {
     
@@ -71,7 +38,7 @@ function loadData() {
 
         let discount = parseInt(products[p].Discount)
         totalDiscount += discount
-        let cellDiscount = '<td class="text_right">' + totalDiscount + "</td>"
+        let cellDiscount = '<td class="text_right">' + discount + "</td>"
 
 
         let total = (products[p].PPU - products[p].Discount) * products[p].Quantity
@@ -110,14 +77,20 @@ function addItem() {
     
     let itemObject = {
         name: elItem.value,
-        Quantity: $('#inputQuantity').val(),
-        PPU: $('#inputPPU').val(),
-        Discount: $('#inputDiscount').val()
+        Quantity: parseInt($('#inputQuantity').val()),
+        PPU: parseInt($('#inputPPU').val()),
+        Discount: parseInt($('#inputDiscount').val())
     }
 
     console.log(itemObject)
 
-    products.push(itemObject)
+    // Check if the product already exists in the products array
+    let existingProduct = products.find(p => p.name === itemObject.name && p.PPU === itemObject.PPU);
+    if (existingProduct) {
+        existingProduct.Quantity += parseInt(itemObject.Quantity);
+    } else {
+        products.push(itemObject)
+    }
     loadData()
 }
 
