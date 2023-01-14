@@ -80,7 +80,7 @@ function addItem() {
         name: elItem.value,
         Quantity: parseInt($('#inputQuantity').val()),
         PPU: parseInt($('#inputPPU').val()),
-        Discount: parseInt($('#inputDiscount').val())
+        Discount: parseInt($('#inputDiscount').val()) * parseInt($('#inputQuantity').val())
     }
 
     console.log(itemObject)
@@ -89,7 +89,7 @@ function addItem() {
     let existingProduct = products.find(p => p.name === itemObject.name && p.PPU === itemObject.PPU);
     if (existingProduct) {
         existingProduct.Quantity += parseInt(itemObject.Quantity);
-        existingProduct.Discount += itemObject.Discount
+        existingProduct.Discount += itemObject.Discount * itemObject.Quantity
     } else {
         products.push(itemObject)
     }
