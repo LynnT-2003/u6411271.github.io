@@ -64,6 +64,7 @@ function clearData() {
     while (table.rows.length > 0) {
         table.deleteRow(0);
     }
+    products.splice(0, products.length);
     $("#grossID").html(0)
     $("#vatID").html(0)
     $("#netID").html(0)
