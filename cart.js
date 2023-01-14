@@ -42,6 +42,8 @@ function loadData() {
 
 
         let total = (products[p].PPU * products[p].Quantity) - products[p].Discount
+        console.log(products[p].Quantity)
+        console.log(products[p].Discount)
         gross += total
         let cellTotal = '<td class="text_right">' + total + "</td>"
         let row = `<tr>${cellDelete}${cellQuantity}${cellName}${cellPPU}${cellDiscount}${cellTotal}</tr>`
@@ -68,6 +70,8 @@ function clearData() {
     $("#grossID").html(0)
     $("#vatID").html(0)
     $("#netID").html(0)
+    $("#discountID").html(0)
+    loadData()
 }
 
 function addItem() {
@@ -80,7 +84,7 @@ function addItem() {
         name: elItem.value,
         Quantity: parseInt($('#inputQuantity').val()),
         PPU: parseInt($('#inputPPU').val()),
-        Discount: parseInt($('#inputDiscount').val()) * parseInt($('#inputQuantity').val())
+        Discount: parseInt($('#inputDiscount').val()) 
     }
 
     console.log(itemObject)
@@ -89,7 +93,7 @@ function addItem() {
     let existingProduct = products.find(p => p.name === itemObject.name && p.PPU === itemObject.PPU);
     if (existingProduct) {
         existingProduct.Quantity += parseInt(itemObject.Quantity);
-        existingProduct.Discount += itemObject.Discount * itemObject.Quantity
+        existingProduct.Discount += itemObject.Discount 
     } else {
         products.push(itemObject)
     }
