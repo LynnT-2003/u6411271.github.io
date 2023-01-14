@@ -41,7 +41,7 @@ function loadData() {
         let cellDiscount = '<td class="text_right">' + discount + "</td>"
 
 
-        let total = (products[p].PPU - products[p].Discount) * products[p].Quantity
+        let total = (products[p].PPU * products[p].Quantity) - products[p].Discount
         gross += total
         let cellTotal = '<td class="text_right">' + total + "</td>"
         let row = `<tr>${cellDelete}${cellQuantity}${cellName}${cellPPU}${cellDiscount}${cellTotal}</tr>`
@@ -89,6 +89,7 @@ function addItem() {
     let existingProduct = products.find(p => p.name === itemObject.name && p.PPU === itemObject.PPU);
     if (existingProduct) {
         existingProduct.Quantity += parseInt(itemObject.Quantity);
+        existingProduct.Discount += itemObject.Discount
     } else {
         products.push(itemObject)
     }
