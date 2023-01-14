@@ -58,3 +58,37 @@
 .icon {
     width: 1em;
 }
+
+.gradient-bg {
+    background: linear-gradient(to right, #00b4db, #0083b0);
+  }
+
+body.gradient-new {background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+}
+
+.table-transparent {
+    background-color: white;
+}
+
+table {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+}
+  
+th, td {
+    padding: 1rem;
+    background: #f4f4f4;
+    box-shadow: inset 10px 10px 10px rgba(0,0,0,0.1);
+}
+  
+th {
+    text-align: left;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
