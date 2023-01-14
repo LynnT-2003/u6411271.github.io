@@ -51,13 +51,14 @@ function loadData() {
     }
     $('#productBody').html(allRows)
 
-    $("#grossID").html(gross)
+    $("#grossID").html(gross.toLocaleString())
 
     let vat = gross * 0.07
     let net = gross + vat
-    $("#vatID").html(vat.toFixed(2))
-    $("#netID").html(net.toFixed(2))
-    $("#discountID").html(totalDiscount)
+
+    $("#vatID").html((vat).toLocaleString(undefined, { minimumFractionDigits: 2 }))
+    $("#netID").html((net).toLocaleString(undefined, { minimumFractionDigits: 2 }))
+    $("#discountID").html(totalDiscount.toLocaleString())
 
 }
 
